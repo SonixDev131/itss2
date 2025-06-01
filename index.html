@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>EatSmart - Find food that fits your schedule</title>
+    <meta name="description" content="Find restaurants and meals that fit your schedule">
+    
+    <!-- Mobile app meta tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="EatSmart">
+    <meta name="theme-color" content="#f97316">
+    
+    <!-- Prevent auto-zoom on input focus -->
+    <meta name="format-detection" content="telephone=no">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="home-container">
+                <div class="home-content">
+                    <div class="home-header">
+                        <h1>EatSmart</h1>
+                        <p>Find food that fits<br>your schedule</p>
+                    </div>
+                    
+                    <div class="time-inputs">
+                        <div class="input-group">
+                            <label for="start-time">Start time</label>
+                            <div class="input-with-icon">
+                                <input type="time" id="start-time" value="12:00" inputmode="none">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="end-time">End time</label>
+                            <div class="input-with-icon">
+                                <input type="time" id="end-time" value="13:00" inputmode="none">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        
+                        <button id="find-restaurants-btn" class="primary-btn" type="button">
+                            <span>Find Restaurants</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurants Page -->
+        <div id="restaurants-page" class="page">
+            <header class="page-header">
+                <div class="header-top">
+                    <button id="back-btn" class="back-btn" type="button" aria-label="Go back">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h1 id="time-range-title">Top Picks for<br>12:00 — 13:00</h1>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" type="button" data-filter="nearby">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Nearby</span>
+                    </button>
+                    <button class="filter-btn" type="button" data-filter="popular">
+                        <i class="fas fa-bolt"></i>
+                        <span>Popular</span>
+                    </button>
+                    <button class="filter-btn" type="button" data-filter="rating">
+                        <i class="fas fa-star"></i>
+                        <span>Rating</span>
+                    </button>
+                </div>
+            </header>
+            
+            <main class="restaurants-list" id="restaurants-container" role="main">
+                <!-- Restaurant cards will be dynamically inserted here -->
+            </main>
+        </div>
+
+        <!-- Dish Detail Page -->
+        <div id="dish-page" class="page">
+            <div class="dish-detail" id="dish-detail-container" role="main">
+                <!-- Dish detail content will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Reviews Page -->
+        <div id="reviews-page" class="page">
+            <header class="page-header">
+                <div class="header-top">
+                    <button id="reviews-back-btn" class="back-btn" type="button" aria-label="Go back">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h1 id="reviews-title">Reviews</h1>
+                </div>
+            </header>
+            
+            <main class="reviews-content" id="reviews-container" role="main">
+                <!-- Reviews will be dynamically inserted here -->
+            </main>
+        </div>
+
+        <!-- Map Modal -->
+        <div id="map-modal" class="modal" role="dialog" aria-labelledby="map-title" aria-hidden="true">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="map-title">Directions to <span id="map-restaurant-name-title"></span></h2>
+                    <button id="close-map-btn" class="close-btn" type="button" aria-label="Close map">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Google Maps Embed Container -->
+                <div class="map-embed-container">
+                    <iframe 
+                        id="map-iframe"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    
+                    <!-- Fallback container for JavaScript Maps API -->
+                    <div id="map" style="height: 400px; width: 100%; border-radius: 0.75rem; display: none;"></div>
+                </div>
+                
+                <div class="map-actions">
+                    <div class="restaurant-info-card">
+                        <h3 id="map-restaurant-name"></h3>
+                        <p id="map-restaurant-address"></p>
+                        <div class="location-status">
+                            <span id="location-status">📍 Getting your location...</span>
+                        </div>
+                    </div>
+                    <div class="direction-buttons">
+                        <button id="start-navigation-btn" class="action-btn navigation-btn" type="button" disabled>
+                            <i class="fas fa-navigation"></i>
+                            <span>Start Navigation</span>
+                        </button>
+                        <button id="get-directions-btn" class="action-btn" type="button">
+                            <i class="fas fa-directions"></i>
+                            <span>Get Directions</span>
+                        </button>
+                        <button id="call-restaurant-btn" class="action-btn" type="button">
+                            <i class="fas fa-phone"></i>
+                            <span>Call Restaurant</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loading-indicator" class="loading-indicator" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p>Đang tải bản đồ...</p>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="demo-setup.js"></script>
+    <script src="app.js"></script>
+    <!-- Google Maps API - Thay YOUR_API_KEY bằng API key thật từ Google Cloud Console -->
+    <!-- 
+        🔧 HƯỚNG DẪN LẤY API KEY:
+        1. Truy cập: https://console.cloud.google.com/
+        2. Tạo project mới
+        3. Enable: Maps JavaScript API, Directions API, Places API, Geocoding API
+        4. Tạo API key tại APIs & Services > Credentials
+        5. Thay YOUR_API_KEY bằng key thật bên dưới
+    -->
+    <script>
+        // Optimized Google Maps loading
+        function loadGoogleMaps() {
+            const script = document.createElement('script');
+            script.async = true;
+            script.defer = true;
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAYZNO0XQpmLX2A6ceNrHeWSQQhIxc1vCM&callback=initGoogleMaps&libraries=geometry,places&loading=async';
+            script.onerror = function() {
+                console.warn('Failed to load Google Maps API, switching to demo mode');
+                if (window.mockGoogleMaps) {
+                    window.mockGoogleMaps();
+                }
+            };
+            document.head.appendChild(script);
+        }
+        
+        // Load maps after page is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadGoogleMaps);
+        } else {
+            loadGoogleMaps();
+        }
+    </script>
+</body>
+</html> 
