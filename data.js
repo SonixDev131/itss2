@@ -39,7 +39,8 @@ async function loadData() {
             restaurant: restaurants.find(r => r.restaurant_id === dish.restaurant_id)?.name || '',
             address: restaurants.find(r => r.restaurant_id === dish.restaurant_id)?.address || '',
             rating: restaurants.find(r => r.restaurant_id === dish.restaurant_id)?.rating || 0,
-            timeToEat: Math.floor(Math.random() * 30) + 15, // Random time between 15-45 mins
+            // Thời gian tổng cộng: đi đến quán (5-15 phút) + ăn (15-30 phút) + về (5-15 phút)
+            timeToEat: Math.floor(Math.random() * 30) + 25, // Random time between 25-55 mins (round trip + eating)
             relatedDishes: []
         }));
 

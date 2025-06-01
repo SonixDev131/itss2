@@ -470,9 +470,12 @@ class EatSmartApp {
                 <div class="restaurant-name">${restaurant.name}</div>
                 <div class="restaurant-dish">${restaurant.dish}</div>
                 <div class="restaurant-meta">
-                    <div class="time-badge">
-                        <i class="fas fa-clock"></i>
-                        ${restaurant.timeToEat}min
+                    <div class="time-badge" title="Thời gian đi đến quán, ăn và trở lại">
+                        <i class="fas fa-route"></i>
+                        <span class="time-text">
+                            <span class="time-duration">${restaurant.timeToEat} phút</span>
+                            <span class="time-description">đi & về</span>
+                        </span>
                     </div>
                     <div class="rating">
                         <i class="fas fa-star"></i>

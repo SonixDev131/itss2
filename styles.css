@@ -326,10 +326,84 @@ body {
   gap: 0.375rem;
   font-size: 0.875rem;
   color: #6b7280;
+  cursor: help;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.time-badge:hover {
+  color: #f97316;
+  transform: scale(1.05);
+}
+
+.time-badge:hover::after {
+  content: "Bao gồm: đi đến quán + thời gian ăn + về";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 100;
+  margin-bottom: 0.25rem;
+  pointer-events: none;
+  animation: fadeInTooltip 0.2s ease-out;
+}
+
+.time-badge:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid rgba(0, 0, 0, 0.9);
+  z-index: 100;
+  pointer-events: none;
+  animation: fadeInTooltip 0.2s ease-out;
+}
+
+@keyframes fadeInTooltip {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .time-badge i {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
+  color: #f97316;
+}
+
+.time-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.time-duration {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.time-description {
+  font-size: 0.6875rem;
+  color: #9ca3af;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
 }
 
 /* Dish detail styles */
@@ -819,6 +893,14 @@ body {
   .direction-buttons .action-btn span {
     font-size: 0.875rem;
   }
+
+  .time-badge:hover::after {
+    font-size: 0.6875rem;
+    padding: 0.375rem 0.5rem;
+    max-width: 200px;
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1072,6 +1154,17 @@ body {
   .back-btn:hover {
     background-color: transparent;
     transform: none;
+  }
+
+  .time-badge:active::after,
+  .time-badge:active::before {
+    opacity: 1;
+    animation: fadeInTooltip 0.2s ease-out;
+  }
+
+  .time-badge:hover::after,
+  .time-badge:hover::before {
+    display: none;
   }
 }
 
