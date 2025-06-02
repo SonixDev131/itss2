@@ -211,7 +211,8 @@ body {
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  padding-bottom: 0.25rem;
+  overflow-y: visible;
+  padding: 0.5rem 1rem 0.75rem 1rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -230,27 +231,67 @@ body {
   background-color: white;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   flex-shrink: 0;
   min-height: 2.5rem;
   white-space: nowrap;
   touch-action: manipulation;
+  color: #6b7280;
+  font-weight: 500;
 }
 
 .filter-btn:hover,
 .filter-btn:active {
   background-color: #f9fafb;
-  transform: scale(1.02);
+  border-color: #f97316;
+  color: #f97316;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.15);
 }
 
 .filter-btn.active {
-  background-color: #f97316;
+  background: linear-gradient(135deg, #f97316, #ea580c);
   border-color: #f97316;
   color: white;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active:hover {
+  background: linear-gradient(135deg, #ea580c, #dc2626);
+  border-color: #ea580c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
 }
 
 .filter-btn i {
   font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.filter-btn:not(.active) i {
+  color: #9ca3af;
+}
+
+.filter-btn:hover:not(.active) i {
+  color: #f97316;
+}
+
+.filter-btn.active i {
+  color: #fef3c7;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+.filter-btn span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.filter-btn.active span {
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Restaurants list styles */
@@ -993,10 +1034,20 @@ body {
 
   .filter-buttons {
     gap: 0.375rem;
+    padding: 0.375rem 0.75rem 0.625rem 0.75rem;
   }
 
   .filter-btn {
     padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+    min-height: 2.25rem;
+  }
+
+  .filter-btn i {
+    font-size: 0.75rem;
+  }
+
+  .filter-btn span {
     font-size: 0.8125rem;
   }
 
@@ -1146,9 +1197,25 @@ body {
     transform: none;
   }
 
-  .filter-btn:hover {
+  .filter-btn:hover:not(.active) {
     background-color: white;
+    border-color: #d1d5db;
+    color: #6b7280;
     transform: none;
+    box-shadow: none;
+  }
+
+  .filter-btn:active:not(.active) {
+    background-color: #f9fafb;
+    border-color: #f97316;
+    color: #f97316;
+    transform: none;
+    box-shadow: 0 1px 4px rgba(249, 115, 22, 0.1);
+  }
+
+  .filter-btn.active:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
   }
 
   .back-btn:hover {

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <title>EatSmart - Find food that fits your schedule</title>
-    <meta name="description" content="Find restaurants and meals that fit your schedule">
+    <title>EatSmart - Tìm món ăn phù hợp với lịch trình</title>
+    <meta name="description" content="Tìm nhà hàng và món ăn phù hợp với lịch trình của bạn">
     
     <!-- Mobile app meta tags -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -28,12 +28,12 @@
                 <div class="home-content">
                     <div class="home-header">
                         <h1>EatSmart</h1>
-                        <p>Find food that fits<br>your schedule</p>
+                        <p>Tìm món ăn phù hợp<br>với lịch trình của bạn</p>
                     </div>
                     
                     <div class="time-inputs">
                         <div class="input-group">
-                            <label for="start-time">Start time</label>
+                            <label for="start-time">Thời gian bắt đầu</label>
                             <div class="input-with-icon">
                                 <input type="time" id="start-time" value="12:00" inputmode="none">
                                 <i class="fas fa-clock"></i>
@@ -41,7 +41,7 @@
                         </div>
                         
                         <div class="input-group">
-                            <label for="end-time">End time</label>
+                            <label for="end-time">Thời gian kết thúc</label>
                             <div class="input-with-icon">
                                 <input type="time" id="end-time" value="13:00" inputmode="none">
                                 <i class="fas fa-clock"></i>
@@ -49,7 +49,7 @@
                         </div>
                         
                         <button id="find-restaurants-btn" class="primary-btn" type="button">
-                            <span>Find Restaurants</span>
+                            <span>Tìm nhà hàng</span>
                         </button>
                     </div>
                 </div>
@@ -60,24 +60,24 @@
         <div id="restaurants-page" class="page">
             <header class="page-header">
                 <div class="header-top">
-                    <button id="back-btn" class="back-btn" type="button" aria-label="Go back">
+                    <button id="back-btn" class="back-btn" type="button" aria-label="Quay lại">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <h1 id="time-range-title">Top Picks for<br>12:00 — 13:00</h1>
+                    <h1 id="time-range-title">Gợi ý cho<br>12:00 — 13:00</h1>
                 </div>
                 
                 <div class="filter-buttons">
                     <button class="filter-btn active" type="button" data-filter="nearby">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Nearby</span>
+                        <span>Gần đây</span>
                     </button>
                     <button class="filter-btn" type="button" data-filter="popular">
                         <i class="fas fa-bolt"></i>
-                        <span>Popular</span>
+                        <span>Phổ biến</span>
                     </button>
                     <button class="filter-btn" type="button" data-filter="rating">
                         <i class="fas fa-star"></i>
-                        <span>Rating</span>
+                        <span>Đánh giá</span>
                     </button>
                 </div>
             </header>
@@ -98,10 +98,10 @@
         <div id="reviews-page" class="page">
             <header class="page-header">
                 <div class="header-top">
-                    <button id="reviews-back-btn" class="back-btn" type="button" aria-label="Go back">
+                    <button id="reviews-back-btn" class="back-btn" type="button" aria-label="Quay lại">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <h1 id="reviews-title">Reviews</h1>
+                    <h1 id="reviews-title">Đánh giá</h1>
                 </div>
             </header>
             
@@ -114,8 +114,8 @@
         <div id="map-modal" class="modal" role="dialog" aria-labelledby="map-title" aria-hidden="true">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 id="map-title">Directions to <span id="map-restaurant-name-title"></span></h2>
-                    <button id="close-map-btn" class="close-btn" type="button" aria-label="Close map">
+                    <h2 id="map-title">Chỉ đường đến <span id="map-restaurant-name-title"></span></h2>
+                    <button id="close-map-btn" class="close-btn" type="button" aria-label="Đóng bản đồ">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -141,21 +141,21 @@
                         <h3 id="map-restaurant-name"></h3>
                         <p id="map-restaurant-address"></p>
                         <div class="location-status">
-                            <span id="location-status">📍 Getting your location...</span>
+                            <span id="location-status">📍 Đang lấy vị trí của bạn...</span>
                         </div>
                     </div>
                     <div class="direction-buttons">
                         <button id="start-navigation-btn" class="action-btn navigation-btn" type="button" disabled>
                             <i class="fas fa-navigation"></i>
-                            <span>Start Navigation</span>
+                            <span>Bắt đầu dẫn đường</span>
                         </button>
                         <button id="get-directions-btn" class="action-btn" type="button">
                             <i class="fas fa-directions"></i>
-                            <span>Get Directions</span>
+                            <span>Chỉ đường</span>
                         </button>
                         <button id="call-restaurant-btn" class="action-btn" type="button">
                             <i class="fas fa-phone"></i>
-                            <span>Call Restaurant</span>
+                            <span>Gọi điện</span>
                         </button>
                     </div>
                 </div>

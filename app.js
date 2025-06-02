@@ -69,7 +69,7 @@ class MapModal {
     getCurrentLocation() {
         const statusEl = document.getElementById('location-status');
         if (statusEl) {
-            statusEl.textContent = '📍 Getting your location...';
+            statusEl.textContent = '📍 Đang lấy vị trí của bạn...';
             statusEl.className = 'location-status';
         }
 
@@ -80,7 +80,7 @@ class MapModal {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    this.updateLocationStatus('✅ Location found');
+                    this.updateLocationStatus('✅ Đã tìm thấy vị trí');
                     this.updateMap();
                     this.enableNavigation();
                 },
@@ -88,14 +88,14 @@ class MapModal {
                     console.warn('Geolocation error:', error);
                     // Fallback to Hanoi city center
                     this.userLocation = { lat: 21.0285, lng: 105.8542 };
-                    this.updateLocationStatus('⚠️ Using default location', true);
+                    this.updateLocationStatus('⚠️ Sử dụng vị trí mặc định', true);
                     this.updateMap();
                     this.enableNavigation();
                 }
             );
         } else {
             this.userLocation = { lat: 21.0285, lng: 105.8542 };
-            this.updateLocationStatus('⚠️ Geolocation not supported', true);
+            this.updateLocationStatus('⚠️ Không hỗ trợ định vị', true);
             this.updateMap();
             this.enableNavigation();
         }
@@ -168,7 +168,7 @@ class MapModal {
     startTracking() {
         this.isTracking = true;
         this.updateNavigationButton();
-        this.updateLocationStatus('🧭 Tracking your location...', false);
+        this.updateLocationStatus('🧭 Đang theo dõi vị trí của bạn...', false);
         
         // Update location every 3 seconds
         this.trackingInterval = setInterval(() => {
@@ -188,7 +188,7 @@ class MapModal {
         }
 
         if (this.userLocation) {
-            this.updateLocationStatus('📍 Location tracking stopped');
+            this.updateLocationStatus('📍 Đã dừng theo dõi vị trí');
         }
 
         console.log('📍 Stopped location tracking');
@@ -203,11 +203,11 @@ class MapModal {
             if (this.isTracking) {
                 startNavBtn.classList.add('active');
                 icon.className = 'fas fa-stop';
-                text.textContent = 'Stop Navigation';
+                text.textContent = 'Dừng dẫn đường';
             } else {
                 startNavBtn.classList.remove('active');
                 icon.className = 'fas fa-navigation';
-                text.textContent = 'Start Navigation';
+                text.textContent = 'Bắt đầu dẫn đường';
             }
         }
     }
@@ -231,7 +231,7 @@ class MapModal {
 
     callRestaurant() {
         if (!this.currentRestaurant || !this.currentRestaurant.contact) {
-            this.showNotification('⚠️ Phone number not available', 'error');
+            this.showNotification('⚠️ Số điện thoại không khả dụng', 'error');
             return;
         }
 
@@ -415,7 +415,7 @@ class EatSmartApp {
         // Update time range title
         const timeRangeTitle = document.getElementById('time-range-title');
         if (timeRangeTitle) {
-            timeRangeTitle.innerHTML = `Top Picks for<br>${this.currentTimeRange}`;
+            timeRangeTitle.innerHTML = `Gợi ý cho<br>${this.currentTimeRange}`;
         }
 
         this.loadRestaurants();
@@ -538,11 +538,11 @@ class EatSmartApp {
                 <div class="dish-actions">
                     <button class="action-btn" onclick="app.showReviews(${dish.id})">
                         <i class="fas fa-star"></i>
-                        Reviews
+                        Đánh giá
                     </button>
                     <button class="action-btn" onclick="app.showMap('${this.currentRestaurant?.address}', '${this.currentRestaurant?.name}', ${this.currentRestaurant?.latitude}, ${this.currentRestaurant?.longitude}, '${this.currentRestaurant?.contact}')">
                         <i class="fas fa-map-marker-alt"></i>
-                        Map & Directions
+                        Bản đồ & Chỉ đường
                     </button>
                 </div>
                 
@@ -572,7 +572,7 @@ class EatSmartApp {
 
         let relatedHtml = `
             <div class="related-dishes">
-                <h3>Related Dishes</h3>
+                <h3>Món ăn liên quan</h3>
                 <div class="related-grid">
         `;
 
@@ -613,7 +613,7 @@ class EatSmartApp {
         // Update reviews title
         const reviewsTitle = document.getElementById('reviews-title');
         if (reviewsTitle && dish) {
-            reviewsTitle.textContent = `Reviews for ${dish.name}`;
+            reviewsTitle.textContent = `Đánh giá về ${dish.name}`;
         }
 
         // Clear container
@@ -669,7 +669,7 @@ class EatSmartApp {
 
     callRestaurant() {
         if (!this.currentRestaurant || !this.currentRestaurant.contact) {
-            alert('Số điện thoại không khả dụng');
+            this.showNotification('⚠️ Số điện thoại không khả dụng', 'error');
             return;
         }
 
