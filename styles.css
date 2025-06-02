@@ -495,6 +495,30 @@ body {
   margin-bottom: 1rem;
 }
 
+.dish-price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 0.75rem;
+  width: fit-content;
+}
+
+.dish-price i {
+  color: #16a34a;
+  font-size: 1rem;
+}
+
+.price-text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #16a34a;
+  letter-spacing: -0.025em;
+}
+
 .dish-rating {
   display: flex;
   align-items: center;

@@ -524,6 +524,11 @@ class EatSmartApp {
                 <h1 class="dish-title">${dish.name}</h1>
                 <p class="dish-restaurant">${dish.restaurant}</p>
                 
+                <div class="dish-price">
+                    <i class="fas fa-tag"></i>
+                    <span class="price-text">${formatPrice(dish.price)}</span>
+                </div>
+                
                 <div class="dish-rating">
                     <div class="rating-stars">
                         ${this.generateStars(parseFloat(avgRating))}
